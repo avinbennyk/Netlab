@@ -42,7 +42,7 @@ int main() {
       	exit(EXIT_FAILURE);
 	}
 	
-	printf("Server is runnningon port %d...\nConnected to the client...\n", PORT);
+	printf("Server is runnning on port %d...\nConnected to the client...\n", PORT);
 	
 	while(1){
     	recv(newsocket, buffer, BUFFERSIZE, 0);

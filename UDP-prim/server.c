@@ -9,16 +9,34 @@
 #define BUFFERSIZE 1024
 
 // Function to check if a number is prime
-bool isPrime(int n) {
-    if (n <= 1) return false;
-    if (n <= 3) return true;
-    if (n % 2 == 0 || n % 3 == 0) return false;
-    for (int i = 5; i * i <= n; i += 6) {
-        if (n % i == 0 || n % (i + 2) == 0) return false;
-    }
-    return true;
+bool isPrime(int n) 
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+    	if (n <= 3)
+    	{
+    		 return true;
+    	}
+    	else
+    	{
+    		int count =1;
+    		for(int i=2; i<n; i++)
+    		{
+    			if(n%2==0)
+    			{
+    				count=count+1;
+    			}
+    		}
+    		if(count>1)
+    		{
+    			return false;
+    		}
+    		return true;
+    	}
 }
-
+   
 int main() {
     int serverfd = 0;
     struct sockaddr_in saddr, caddr; // server_address, client_address
@@ -57,9 +75,9 @@ int main() {
         
         // Prepare response message
         if (prime)
-            strcpy(buffer, "Prime");
+            strcpy(buffer, "The number is Prime ");
         else
-            strcpy(buffer, "Not Prime");
+            strcpy(buffer, "The number is Not Prime");
         
         // Send prime status back to client
         sendto(serverfd, buffer, strlen(buffer), MSG_CONFIRM, (struct sockaddr *)&caddr, len);
